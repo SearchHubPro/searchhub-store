@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchHub 購入ページ</title>
+    <style>
+        /* 📱 スマホ向けの全画面レイアウト */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            background: #ffffff;
+            text-align: center;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        .top-banner {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content {
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        p {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        /* ボタンの共通設定 */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.2s;
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            line-height: 1.4;
+        }
+
+        /* 補足テキスト（カッコ内）の設定 */
+        .sub-text {
+            display: block;
+            font-size: 12px;
+            font-weight: normal;
+            margin-top: 2px;
+            opacity: 0.9;
+        }
+
+        /* 各サイトのブランドカラー設定 */
+        .btn-tips { background-color: #ffcc00; color: #111; }
+        .btn-brain { background-color: #fc4d50; color: #fff; } /* BOOTHの赤色に変更しました */
+
+        .btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* 💻 PC・タブレット向けの設定 */
+        @media (min-width: 600px) {
+            body {
+                background-color: #f4f6f9;
+                align-items: center;
+                padding: 40px 20px;
+            }
+
+            .container {
+                max-width: 500px;
+                border-radius: 16px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="https://i.ibb.co/S7BwkybY/ss-1.png" alt="SearchHub" class="top-banner">
+
+    <div class="content">
+        <p>ご希望の決済方法を以下からお選びください</p>
+
+        <a href="https://tips.jp/u/kinkin1135/a/sedori-automation/d/dac" target="_blank" class="btn btn-tips">
+            Tipsで購入<br>
+            <span class="sub-text">（ポイント利用可・アフィリエイト報酬対応）</span>
+        </a>
+
+        <a href="https://brain-market.com/u/kinkin1135/a/b3gDOyUjMgoTZsNWa0JXY" target="_blank" class="btn btn-brain">
+            Brainで購入<br>
+            <span class="sub-text">（ポイント利用可・アフィリエイト報酬対応）</span>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
