@@ -1,122 +1,245 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SearchHub 購入ページ</title>
-    <style>
-        /* 📱 スマホ向けの全画面レイアウト */
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SearchHub Mobile Lite - 無料リサーチツール</title>
+<style>
+  /* 全体のベース設定 */
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #ffffff; 
+    color: #333333; 
+  }
+  .container { max-width: 480px; margin: 0 auto; padding: 20px; }
 
-        .container {
-            width: 100%;
-            background: #ffffff;
-            text-align: center;
-            border-radius: 0;
-            box-shadow: none;
-            overflow: hidden;
-        }
+  /* 1. アプリ情報エリア（ファーストビュー） */
+  .header { display: flex; align-items: flex-start; margin-bottom: 24px; }
+  .app-icon { 
+    width: 104px; height: 104px; 
+    border-radius: 22px; 
+    margin-right: 16px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    border: 1px solid #eeeeee;
+    object-fit: cover;
+  }
+  .app-info { flex: 1; padding-top: 4px; }
+  .app-title { font-size: 22px; font-weight: 700; margin: 0 0 4px 0; letter-spacing: -0.5px; }
+  .app-subtitle { font-size: 14px; color: #888888; margin: 0 0 12px 0; }
+  
+  .btn-get { 
+    display: inline-block; 
+    background-color: #007aff; 
+    color: #ffffff; 
+    text-decoration: none; 
+    font-size: 15px; font-weight: bold; 
+    padding: 8px 24px; 
+    border-radius: 20px; 
+    text-align: center; 
+  }
+  .btn-note { font-size: 11px; color: #888888; display: block; margin-top: 6px; }
 
-        .top-banner {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+  /* 2. 説明文エリア（上部） */
+  .description { font-size: 15px; line-height: 1.6; color: #333333; margin-bottom: 20px; }
+  .description h2 { font-size: 19px; font-weight: bold; margin-top: 0; margin-bottom: 12px; }
 
-        .content {
-            padding: 30px 20px;
-            box-sizing: border-box;
-        }
+  /* ホーム画面追加の案内枠 */
+  .home-screen-note {
+    background-color: #f4f9ff;
+    border-left: 4px solid #007aff;
+    padding: 12px 16px;
+    margin: 0 0 20px 0;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .home-screen-note strong { color: #007aff; }
 
-        p {
-            font-size: 15px;
-            color: #444;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
+  /* 3. スクリーンショットエリア */
+  .screenshots { 
+    display: flex; overflow-x: auto; gap: 12px; 
+    padding-bottom: 15px; margin-bottom: 20px;
+    scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch; 
+  }
+  .screenshots::-webkit-scrollbar { display: none; }
+  .screenshot-img { 
+    flex: 0 0 220px; 
+    height: 476px; 
+    border-radius: 18px; 
+    border: 1px solid #e5e5ea; 
+    scroll-snap-align: center;
+    object-fit: cover; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
 
-        /* ボタンの共通設定 */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px 0;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            transition: all 0.2s;
-            box-sizing: border-box;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            line-height: 1.4;
-        }
+  /* 4. 特徴・機能解放リンクエリア（下部） */
+  .features-section { font-size: 15px; line-height: 1.6; color: #333333; margin-bottom: 24px; }
+  .features { margin: 0 0 24px 0; padding-left: 20px; color: #555555; }
+  .features li { margin-bottom: 6px; }
 
-        /* 補足テキスト（カッコ内）の設定 */
-        .sub-text {
-            display: block;
-            font-size: 12px;
-            font-weight: normal;
-            margin-top: 2px;
-            opacity: 0.9;
-        }
+  /* 全機能解放用の枠とボタン */
+  .gift-box {
+    background-color: #fffaf0; /* 少しリッチなクリーム系の背景 */
+    border: 1px solid #ffe4b5;
+    border-radius: 12px;
+    padding: 20px 16px;
+  }
+  .gift-box h3 {
+    margin: 0 0 12px 0;
+    font-size: 17px;
+    color: #e67e22; /* 魅力的に見せるオレンジ系 */
+    text-align: center;
+  }
+  .gift-box p {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+  }
+  .unlock-list {
+    margin: 0 0 20px 0;
+    padding-left: 0;
+    list-style: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+  }
+  .unlock-list li {
+    margin-bottom: 8px;
+    padding-left: 24px;
+    position: relative;
+  }
+  .unlock-list li::before {
+    content: "✓";
+    color: #e67e22;
+    position: absolute;
+    left: 4px;
+  }
+  .btn-unlock {
+    display: block;
+    background-color: #e67e22; /* 目立つオレンジ色のボタン */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 16px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+  }
 
-        /* 各サイトのブランドカラー設定 */
-        .btn-tips { background-color: #ffcc00; color: #111; }
-        .btn-brain { background-color: #fc4d50; color: #fff; }
-
-        .btn:hover {
-            opacity: 0.85;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-
-        /* 💻 PC・タブレット向けの設定 */
-        @media (min-width: 600px) {
-            body {
-                background-color: #f4f6f9;
-                align-items: center;
-                padding: 40px 20px;
-            }
-
-            .container {
-                max-width: 500px;
-                border-radius: 16px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            }
-        }
-    </style>
+  /* 🚀 追加：カウンター用のスタイル */
+  .counter-wrapper { text-align: center; margin-top: 16px; }
+  .counter-box { 
+    display: inline-flex; border: 1px solid #e2e8f0; border-radius: 6px; 
+    font-family: 'Courier New', monospace; font-size: 11px; font-weight: bold; 
+    color: #a0aec0; background: #ffffff; 
+  }
+  .counter-box div { padding: 6px 12px; }
+  .counter-box div:first-child { border-right: 1px solid #e2e8f0; }
+</style>
 </head>
 <body>
-
 <div class="container">
-    <!-- 📸 トップバナー -->
-    <img src="https://i.ibb.co/S7BwkybY/ss-1.png" alt="SearchHub" class="top-banner">
-
-    <div class="content">
-        <p>ご希望の決済方法を以下からお選びください</p>
-
-        <!-- ✅ Tips決済リンク（URL変更済み） -->
-        <a href="https://tips.jp/u/kinkin1135" target="_blank" class="btn btn-tips">
-            Tipsで購入<br>
-            <span class="sub-text">（ポイント利用可・アフィリエイト報酬対応）</span>
-        </a>
-
-        <!-- ✅ Brain決済リンク（URL変更済み） -->
-        <a href="https://brain-market.com/search?q=searchhub&order=fav&searchType=keyword" target="_blank" class="btn btn-brain">
-            Brainで購入<br>
-            <span class="sub-text">（ポイント利用可・アフィリエイト報酬対応）</span>
-        </a>
+  
+  <!-- ファーストビュー -->
+  <div class="header">
+    <img src="https://i.ibb.co/DHQQ04BZ/icon.png" alt="SearchHub アイコン" class="app-icon">
+    <div class="app-info">
+      <h1 class="app-title">SearchHub<br>Mobile Lite</h1>
+      <p class="app-subtitle">店舗・電脳対応 自動リサーチツール</p>
+      <!-- ▼無料WebアプリのURL▼ -->
+      <a href="https://searchhubpro.github.io/searchhub-mobile-lite/" class="btn-get" id="openAppBtn">Webアプリを開く</a>
+      <span class="btn-note">※インストール・登録不要</span>
     </div>
+  </div>
+
+  <!-- 上部テキストエリア -->
+  <div class="description">
+    <div class="home-screen-note">
+      💡 <strong>おすすめの使い方</strong><br>
+      ブラウザのメニューから<strong>「ホーム画面に追加」</strong>していただくと、本物のアプリのように全画面でサクサク快適にご利用いただけます！
+    </div>
+
+    <h2>広告で見たツールが、すぐ使えます</h2>
+    <p>動画でご紹介した「Amazonリサーチ」を、今すぐブラウザでお試しいただけます。</p>
+    <p>店舗せどりでも、電脳せどりでも大活躍。面倒な利益計算をスマホ1つで完結させる専用ツールです。</p>
+  </div>
+
+  <!-- スクショ画像エリア -->
+  <div class="screenshots">
+    <img src="https://i.ibb.co/9kbfsjcv/IMG-0003.png" alt="SearchHub リサーチ画面1" class="screenshot-img">
+    <img src="https://i.ibb.co/R42CWJDk/IMG-0005.png" alt="SearchHub リサーチ画面2" class="screenshot-img">
+    <img src="https://i.ibb.co/s8fsZGs/IMG-0006.png" alt="SearchHub リサーチ画面3" class="screenshot-img">
+  </div>
+
+  <!-- 特徴と機能解放エリア（画像の下） -->
+  <div class="features-section">
+    <p><strong>【主な特徴】</strong></p>
+    <ul class="features">
+      <li>面倒なアプリのダウンロードは一切不要</li>
+      <li>直感的なAmazonリサーチ機能</li>
+      <li>まずは完全無料で体験可能</li>
+    </ul>
+
+    <!-- 追加機能解放への導線 -->
+    <div class="gift-box">
+      <h3>🚀 全ての機能を解放しよう！</h3>
+      <p>以下の便利な追加機能も、完全無料で使えるようになります。</p>
+      <ul class="unlock-list">
+        <li>自動リサーチ機能</li>
+        <li>ヤフオク検索機能</li>
+        <li>仕入れ商品登録機能</li>
+      </ul>
+      <a href="https://searchhubpro.github.io/searchhub-line2/" class="btn-unlock">
+        全機能を無料で解放する
+      </a>
+
+      <!-- 🚀 カウンター追加エリア -->
+      <div class="counter-wrapper">
+        <div class="counter-box">
+          <div title="サイト訪問数" id="count-visit">---,---</div>
+          <div title="総ダウンロード数" id="count-dl">---,---</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
+<!-- 🚀 カウンターの裏側で動くシステム（JS） -->
+<script>
+  const COUNTER_GAS_URL = "https://script.google.com/macros/s/AKfycbzqAlLUYIiBL3xCmB6iBArALrLxnP6yvtrEHEdpA5L0Up-6pNxKDIE-ZkXf5Mo4sktkdA/exec";
+
+  // ページが開かれたら訪問数をカウント
+  window.addEventListener('DOMContentLoaded', () => {
+      if(COUNTER_GAS_URL.includes("【")) return;
+      fetch(COUNTER_GAS_URL + "?action=visit")
+          .then(r => r.json())
+          .then(d => updateCounterUI(d.visits, d.downloads))
+          .catch(e => console.log("Counter Error", e));
+  });
+
+  // ダウンロード数（Webアプリを開くボタンを押した数）をカウント
+  function recordDownload() {
+      if(COUNTER_GAS_URL.includes("【")) return;
+      fetch(COUNTER_GAS_URL + "?action=download")
+          .then(r => r.json())
+          .then(d => updateCounterUI(d.visits, d.downloads))
+          .catch(e => console.log("Counter Error", e));
+  }
+
+  // 画面に5桁の数字を表示する関数
+  function updateCounterUI(v, d) {
+      if(document.getElementById('count-visit')) document.getElementById('count-visit').innerText = String(v).padStart(5, '0').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      if(document.getElementById('count-dl')) document.getElementById('count-dl').innerText = String(d).padStart(5, '0').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  // 「Webアプリを開く」ボタンを押した時にカウントのスイッチを入れる
+  document.getElementById('openAppBtn')?.addEventListener('click', () => { recordDownload(); });
+</script>
 </body>
 </html>
